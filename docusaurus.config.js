@@ -1,8 +1,8 @@
 module.exports = {
   title: 'BloodConnect',
   tagline: 'Give to those who need it the most',
-  url: 'https://your-docusaurus-test-site.com',
-  baseUrl: '/',
+  url: 'https://bloodwork-nus.github.io',
+  baseUrl: '/bloodconnect/',
   favicon: 'img/logo.png',
   organizationName: 'bloodwork-nus', // Usually your GitHub org/user name.
   projectName: 'bloodconnect', // Usually your repo name.
