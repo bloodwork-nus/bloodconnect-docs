@@ -24,6 +24,7 @@
   padding: 0 var(--ifm-pre-padding);
 }
 
+/*
 @font-face {
   font-family: "Inter";
   src: local("Inter"), url("/fonts/Inter-Regular.otf") format("opentype");
@@ -77,3 +78,4 @@
 p, h1, h2, h3, h4, h5, h6, em, a, li, th, td, dt, dd, time, strong {
   font-family: "Inter";
 }
+*/
