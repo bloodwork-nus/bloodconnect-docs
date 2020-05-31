@@ -1,12 +1,13 @@
 ---
 id: milestone1
-title: Milestone 1 🚀
+title: "Milestone 1 🚀"
 sidebar_label: Milestone 1
 ---
 
 Proposed level of achievement: **Artemis**.
 
 ## Motivation
+
 
 ## Aim of project
 
@@ -15,6 +16,50 @@ Proposed level of achievement: **Artemis**.
 ## Scope of project
 
 ## Other platforms
+We did a literature review and indeed, our proposal was not unique. There have been similar platforms developed,
+such as [Simply Blood](http://simplyblood.com), [Donor2Donor](http://donor2donor.com/), [Blood4Life.ID](http://blood4life.id/), and [Red Cross Connection](https://www.techinasia.com/singapore-red-cross-gamifies-blood-donations-app).
+
+* [Simply Blood](http://simplyblood.com), developed in 2017  
+Simply Blood is an Android and web app developed as a platform to connect blood donors
+with blood seekers to alleviate blood shortage, wastage, and transfusion waiting time. After inspecting the app,
+we saw that it requires *all* users (donors and seekers) to create
+an account with their mobile phone number, which is verified by an SMS OTP. The app also requires blood requesters
+to provide their full name, which may be considered a privacy concern, as some users may not want to disclose the 
+fact that they have medical conditions which require blood transfusion. **With BloodConnect**, we will design a more intuitive UI which not only looks modern and recent, but also easy to use. BloodConnect will only require *blood seekers*
+to register and verify their email address to prevent illegal activities, but allow *blood donors* to use the app
+without registration. However, blood donors can create an account to view their donation history, save their
+fitness survey for a set period of time (TBC), and be notified of any nearby blood requests. BloodConnect **will not** require users' full name for privacy reasons.
+
+* [Donor2Donor](http://donor2donor.com/), developed in 2016  
+This app takes a different approach towards finding blood donations. First of all, this app also allows for organ
+donations, not only blood donations. Secondly, this app allows blood seekers to find available blood donors with
+maximum radius of 50 km. This approach is different from BloodConnect's, as donors will have to publish their 
+availability in the platform and blood seekers will choose from a list of available donors. Donor2Donor, despite having
+their website written in English, seems to focus on the Indian community, as their ads are mainly in Hindi. We aim
+to enable connections in any parts of the world.
+
+* [Blood4Life.ID](http://blood4life.id/), developed in 2009  
+In 2009, Blood4Life.ID used mailing lists, and shifted to Twitter and Facebook in 2010. In 2019, they developed the
+[web application](http://blood4life.id) as a more systematic platform. It appears that Blood4Life.ID takes a more
+social approach, as their web app contains a lot of posts, events, news, community collaterals, and blood requests
+map in between. Also, this platform is only available for the Indonesian community. Its blood donation search
+function only "posts" request and donors will have to search and contact the requester directly. **With BloodConnect**,
+it will notify nearby users and there is a call-to-action for donors to connect with the requester.
+
+* [Red Cross Connection](https://www.techinasia.com/singapore-red-cross-gamifies-blood-donations-app), developed in 2014  
+This platform was developed by the Singapore Red Cross as a campaign, and was officially announced in January 2014.[^1] 
+It shared similarities with BloodConnect, however, it is no longer operational. The app allows users to post the 
+"number of lives they have saved" and view the "number of blood donations made by their peers".[^2] We believe that 
+this feature does not value-add into the problem that the platform was aiming to tackle: 
+*amplifying the search for donors*.[^1] Instead, this feature may make blood donation seemed competitive and users can 
+showcase the "*number of lives they have saved*". As a reward, blood donors may scan a QR code at donation sites to view an
+AR animation an an appreciation for their "selfless and heroic acts".[^3] While we agree with the campaign's message that 
+donating blood is a heroic act, the aim of BloodConnect's development is not as a campaign, but as a tool to solve the 
+problem with finding blood. That being said, as of now, we do not plan to take a gamified approach towards blood donation.
+
+[^1]: https://www.campaignasia.com/agencyportfolio/casestudy/200,red-cross-connection.aspx#.XtIaHjoza00
+[^2]: https://www.todayonline.com/singapore/singapore-red-cross-launches-mobile-app-blood-donation
+[^3]: https://www.techinasia.com/singapore-red-cross-gamifies-blood-donations-app
 
 ## User flow
 
