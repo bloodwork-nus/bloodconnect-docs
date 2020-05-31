@@ -16,7 +16,7 @@ Proposed level of achievement: **Artemis**.
 ## Scope of project
 
 ## Other platforms
-We did a literature review and indeed, our proposal was not unique. There have been similar platforms developed,
+We did a literature review and there have been similar platforms developed,
 such as [Simply Blood](http://simplyblood.com), [Donor2Donor](http://donor2donor.com/), [Blood4Life.ID](http://blood4life.id/), and [Red Cross Connection](https://www.techinasia.com/singapore-red-cross-gamifies-blood-donations-app).
 
 * [Simply Blood](http://simplyblood.com), developed in 2017  
