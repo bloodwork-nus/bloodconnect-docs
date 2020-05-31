@@ -85,7 +85,7 @@ To deploy your changes, save all your changes and simply invoke this command:
 | Platform | Command |
 | ------- | --------------------------------------------------------------- |
 | Linux   | `$ GIT_USER=<Your GitHub username> yarn deploy`                 |
-| Windows | `cmd /C "set "GIT_USER=<Your GitHub username>" && yarn deploy"` |
+| Windows | `$ cmd /C "set "GIT_USER=<Your GitHub username>" && yarn deploy"` |
 
 If there are no errors, the site should be live at [https://bloodwork-nus.github.io/bloodconnect](https://bloodwork-nus.github.io/bloodconnect/). Congratulations!
 
