@@ -28,4 +28,4 @@ Proposed level of achievement: **Artemis**.
 | 4  | Meeting with Robin Loh | May 19 | 3 | 3 | Mentor matching. Discussed about the fundamentals of software development, documentation, testing, and project proposal. |
 | 5  | Meeting with Leslie Ho | May 20 | 1 | 1 | Mentor matching. Discussed about project proposal and features. Also planned for expectations by Milestones 1 to 3. |
 | 6  | Team Meeting 2: Thoughts | May 20 | 1 | 1 | Discussed about thoughts after meeting and exchanging emails with several mentors. We chose to continue with Leslie Ho. |
-| 7  | Wireframing | May 23 | 7 | 2 | [Click here for the wireframes designed so far](../../static/misc/bloodconnect-mockup.pdf). |
+| 7  | Wireframing | May 23 | 7 | 2 | [Click here for the wireframes designed so far](https://github.com/bloodwork-nus/bloodconnect-docs/raw/master/static/misc/bloodconnect-mockup.pdf). |
