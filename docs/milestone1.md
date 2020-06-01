@@ -7,13 +7,105 @@ sidebar_label: Milestone 1
 Proposed level of achievement: **Artemis**.
 
 ## Motivation
+For a country of approximately 5.7 million people, the 75,655 donors in 2019&mdash;approx. 1.33%&mdash;was particularly
+low.[^1] In fact, in 2019, the Singapore Red Cross and Health Sciences Authority appealed for blood donors as stocks
+in blood banks reached low levels.[^2] Approximately 3,000 donors of any types were needed to restore the stocks to a 
+healthy level. This shortage was grave as the blood group with the greatest extent of shortage was O, the universal group 
+used in emergencies, particulary when the blood identity of the patient was unknown. The situation is exacerbated by
+the fact that the number of young donors is declining at a steady rate, from about 23,000 in 2008 to 18,000 in
+2019.[^1]<sup>,</sup>[^3] As the population is being increasingly dominated by senior citizens, and the current COVID-19
+pandemic progresses, blood donors are needed more than ever.
 
+When there is a lack of supply for a particular blood type in blood banks or hospital inventories, patients and families
+turn to social media to look for blood donors. While this method may reach a myriad of potential donors, it is not 
+always deterministic. There is also no guarantee that the potential donors are reachable, and this weakness in this 
+method may be crucial in times of crisis. The Singapore Red Cross and HSA have a database of blood donors which are
+contactable when blood supplies are needed. However, this system limits the coverage to only the regular registered
+donors. Hence, we propose the development of a platform, **BloodConnect**, to connect blood donors and donees whenever,
+wherever. BloodConnect allows users to create blood requests, which are viewable by other users as potential donors.
+Nearby users will also be notified. If a user decides to donate to a request, they will be connected to the requester
+and arrange a meeting at the hospital of request. Through this platform, we aim to bridge the gap between donors and 
+donees and decrease the waiting time to find blood, particularly in emergencies.
+
+[^1]: https://www.hsa.gov.sg/blood-donation/blood-facts-and-figures
+[^2]: https://www.straitstimes.com/singapore/3000-blood-donors-needed-as-stocks-run-low
+[^3]: https://www.tnp.sg/news/singapore/singapore-red-cross-concerned-over-lack-young-blood-donors
 
 ## Aim of project
+To ensure consistent healthy supply of blood at bloodbanks and bridge the gap between blood donors and blood seekers, we
+aim to develop a platform to provide information on blood requests and notify nearby potential donors to reduce the waiting
+time for blood donations in emergency situations and encourage young donors through a relevant, digital platform with
+the ease to search avenues for blood donations.
 
 ## User stories
+* As a *blood donor*, I want to be able to see blood requests to which I can donate my blood.
+* As a *blood donor*, I want to be notified when blood donation is required near my location.
+* As a *blood seeker*, I want to be able to create a blood request with my contact details and connect with an eligible donor fast.
+* As a *blood bank administrator*, I want to be able to create a blood request when the blood stocks are running low.
+* As a *hospital or health institution staff*, I want to be able to create a blood request when blood stocks are running 
+low or my patients requires direct blood transfusion.
+* As a *research institution staff*, I want to be able to create a blood request when I need donors for research
+purposes (e.g. recovered COVID-19 donors for vaccine research, etc).
+* As an *blood donation event organiser*, I want to be able to create a blood request inform of my event and increase
+participation.
 
 ## Scope of project
+The platform utilises mobile (for Android and iOS) and web applications as the **front-end** interfaces for blood donors
+to view and respond to blood requests and blood seekers to create blood requests. The 
+[mobile app](http://github.com/bloodwork-nus/bloodconnect) is being developed with [React Native](http://reactnative.dev)
+and the web app will be developed with [React](http://reactjs.org).
+
+A set of **back-end** APIs will be developed for authentication, database, push notifications, and pairing algorithms. 
+This will be developed with [Node.js](http://nodejs.org) and [Firebase](http://firebase.google.com) cloud functions.
+
+---
+
+In addition of the algorithm to pair donors and donees, these are the several features to be completed by **mid June**.
+
+### Mobile application
+This app is the main BloodConnect app which enables users to create, view, and respond to blood requests. Registered
+users will be able to view their donations/requests history and be notified of nearby blood donations. Users can also
+share blood requests to their friends.
+
+### Maps
+BloodConnect will make use of the Google Maps API (for Android) and Apple Maps (for iOS). The blood requests will appear
+on the map and users will be able to tap on the markers to see the details for each requests.
+
+### Authentication
+Using Firebase, BloodConnect allows for user accounts creation. In addition, OAuth will also be implemented to allow
+users to create account with existing services, e.g. Google or Facebook accounts.
+
+### Smart search
+The search function in BloodConnect will be developed to allow searches based on blood type, types of venues, emergency,
+time, descriptions, and venue names. In addition, voice search will also be implemented.
+
+### Push notifications
+Nearby donors (registered users) will be notified when a blood request is made requiring their blood type. Users can
+opt to be notified of all blood requests, only emergency ones, those coming from specific venues (hospitals or blood banks),
+etc.
+
+---
+
+These are the several features to be completed by **mid July**.
+
+### Web application
+To increase accessibility, a web app version of BloodConnect, accessible from mobile and desktop browsers, will also be
+developed.
+
+### OTP verification
+OTP verification for users' mobile phone or email verifications.
+
+### Custom protocol handler
+Since users can share blood requests, we plan to share the blood requests in a form of a link which will be able to 
+redirect users to the web or mobile app. To redirect to the latter, a custom protocol handler is needed.
+
+### Expression of gratitude
+After a successful blood donation, an animation will be displayed to thank donors for their heroic and selfless 
+contribution.
+
+### Open API
+We plan to develop an open API for developers alike to build upon our platform. Although we believe that these APIs will
+be useful, as of now, it is still a tentative milestone.
 
 ## Other platforms
 We did a literature review and there have been similar platforms developed,
@@ -47,21 +139,29 @@ function only "posts" request and donors will have to search and contact the req
 it will notify nearby users and there is a call-to-action for donors to connect with the requester.
 
 * [Red Cross Connection](https://www.techinasia.com/singapore-red-cross-gamifies-blood-donations-app), developed in 2014  
-This platform was developed by the Singapore Red Cross as a campaign, and was officially announced in January 2014.[^1] 
+This platform was developed by the Singapore Red Cross as a campaign, and was officially announced in January 2014.[^4] 
 It shared similarities with BloodConnect, however, it is no longer operational. The app allows users to post the 
-"number of lives they have saved" and view the "number of blood donations made by their peers".[^2] We believe that 
+"number of lives they have saved" and view the "number of blood donations made by their peers".[^5] We believe that 
 this feature does not value-add into the problem that the platform was aiming to tackle: 
-*amplifying the search for donors*.[^1] Instead, this feature may make blood donation seemed competitive and users can 
+*amplifying the search for donors*.[^4] Instead, this feature may make blood donation seemed competitive and users can 
 showcase the "*number of lives they have saved*". As a reward, blood donors may scan a QR code at donation sites to view an
-AR animation an an appreciation for their "selfless and heroic acts".[^3] While we agree with the campaign's message that 
+AR animation an an appreciation for their "selfless and heroic acts".[^6] While we agree with the campaign's message that 
 donating blood is a heroic act, the aim of BloodConnect's development is not as a campaign, but as a tool to solve the 
 problem with finding blood. That being said, as of now, we do not plan to take a gamified approach towards blood donation.
 
-[^1]: https://www.campaignasia.com/agencyportfolio/casestudy/200,red-cross-connection.aspx#.XtIaHjoza00
-[^2]: https://www.todayonline.com/singapore/singapore-red-cross-launches-mobile-app-blood-donation
-[^3]: https://www.techinasia.com/singapore-red-cross-gamifies-blood-donations-app
+[^4]: https://www.campaignasia.com/agencyportfolio/casestudy/200,red-cross-connection.aspx#.XtIaHjoza00
+[^5]: https://www.todayonline.com/singapore/singapore-red-cross-launches-mobile-app-blood-donation
+[^6]: https://www.techinasia.com/singapore-red-cross-gamifies-blood-donations-app
 
-## User flow
+## Program flow
+![Program and user flow diagram](https://github.com/bloodwork-nus/bloodconnect-docs/raw/master/static/img/program-flow.svg)
+
+## Progress video
+If you cannot view the video in the frame below, click [here](https://youtu.be/xASdTHSVbhs) to watch it on YouTube.
+<iframe width="560" height="315" src="https://www.youtube.com/embed/xASdTHSVbhs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## Project poster
+[Click here to view the poster.](https://github.com/bloodwork-nus/bloodconnect-docs/raw/master/static/misc/bloodconnect-poster-20200601.pdf)
 
 ## Project Log
 
@@ -83,4 +183,9 @@ problem with finding blood. That being said, as of now, we do not plan to take a
 | 14 | Development: Explore screen (Part 2) | May 29 | 10 | | Integrated Google Maps (on Android) and Apple Maps (on iOS), added my-location and user profile buttons, requests list view, and debugged weird bottom sheet layout and shadow issues. |
 | 15 | Mission Control 3 | May 30 | 2 | 2 | UI/UX Workshop Part 1. Ivan also watched the recording of the session. The recording was only made for our team only, will *never* be shared with anyone. |
 | 16 | Team Meeting 4: Features | May 30 | 3 | 3 | Discussed about project scope, specific features, and BloodConnect's unique selling points. Also compared UI designs from other apps (e.g. Netflix, Gojek, Uber, etc.) with BloodConnect. |
-| 17 | Deployed [BloodConnect Docs](https://github.com/bloodwork-nus/bloodconnect-docs) (this site!) | May 31 | 2 | 2 | Developed this site as a developers' documentation and project stories. | 
+| 17 | Deployed [BloodConnect Docs](https://github.com/bloodwork-nus/bloodconnect-docs) (this site!) | May 31 | 2 | 2 | Developed this site as a developers' documentation and project stories. |
+| | **Total hours** | | 92 | 25 | |
+
+Total hours spent by both Orbitees: 92 + 25 = **117 hours**.
+
+See you in Milestone 2 👋!
