@@ -6,6 +6,8 @@
  */
 
 /* You can override the default Infima variables here. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
 :root {
   --ifm-color-primary: #E20070;
   --ifm-color-primary-dark: rgb(33, 175, 144);
@@ -15,6 +17,8 @@
   --ifm-color-primary-lighter: rgb(102, 212, 189);
   --ifm-color-primary-lightest: rgb(146, 224, 208);
   --ifm-code--size: 95%;
+  --ifm-global-shadow-md: 0;
+  --ifm-font-family-base: "Inter", sans-serif;
 }
 
 .docusaurus-highlight-code-line {
