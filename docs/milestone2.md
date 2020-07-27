@@ -54,9 +54,12 @@ the final distributable app packages' size 📦.
 
 :::important
 We are well aware of the recent [CVE-2020-8149](https://nvd.nist.gov/vuln/detail/CVE-2020-8149) vulnerability involving `logkitty` version < 0.7.1
-which allows arbitrary shell commands execution. BloodConnect is susceptible to this vulnerability. Fret not, we have tested an experimental branch
-with updated packages that will resolve this vulnerability. It will be deployed by Milestone 3 after upgrading our code base.
+which allows arbitrary shell commands execution. We have patched this vulnerability in BloodConnect in our local branch, which contains our 
+upgraded code base.
 :::
+
+## User's guide
+Woohoo 🎉! We finally have a user's guide. [Click here to view the latest User's Guide](userguide).
 
 ## Testing
 As Milestone 2 is a prototyping phase, unit tests have not yet been integrated in our code base (please ignore the Failed CircleCI status image).
@@ -88,6 +91,19 @@ However, since the card uses elevation on Android for shadows, for some reasons 
 [This issue has been fixed](https://github.com/bloodwork-nus/bloodconnect/commit/4f6b05f09d9f0ecc47449a432fdaa21562baa8fd).
 
 - **Panning on map view** will lower the bottom sheet for better viewing experience, and it worked as expected.
+
+### Requests and donations
+- **Creating a new request from start to finish**. A request was made from start to finish and there were no hiccups. The database was updated
+almost instantly and on other devices, the request appeared instantly too, thanks to the integrated realtime database.
+
+- **Submitting a donation availability from start to finish**. A donation was made from start to finish and everything performed as expected.
+The database was updated almost instantly, and the requester received a push notification about the new potential donor.
+
+:::note
+We will create a validator to ensure that only donors with compatible blood types can respond to a request. This should be more useful towards
+the requester. At this stage, we are still designing an optimal approach to this feature, since one user account can respond to a request with 
+actual donor being a different person (i.e. a friend or family member of the account owner).
+:::
 
 ### New request screen
 - **Tapping on the + button** opens the new request screen. However, there was a delay in opening the page, which is believed due to the structuring
@@ -131,6 +147,10 @@ applicable, and time of creation. The controls were displayed correctly.
 
 - **Open request controls**. For open requests, users will be able to see number of potential donors, a View donors and Close request buttons.
 Tapping on Close request will close the request and move the request down to Past requests.
+
+- **Complete, cancel, and delete request buttons**. The actions performed worked exactly as intended, with complete and cancel buttons correctly
+updating the `status` fields in our database, and completing a request additionally adds `dateCompleted` and `donor` fields to the request object.
+Delete request completely purges the request object off our database.
 
 - **Past request controls**. For completed requests, users will be able to see the final donor's name and contact number and the time of completion
 for reference. For both completed and cancelled requests, tapping on Delete request will remove the request from our database. Indeed, the request
@@ -213,3 +233,160 @@ from React Native's end. One alternative is to suppress the warning, but I despi
 >Setting a timer for a long period of time, i.e. multiple minutes, is a performance and correctness issue on Android as it keeps the
 timer module awake, and timers can only be called when the app is in the foreground. See https://github.com/facebook/react-native/issues/12981
 for more info. (Saw `setTimeout` with duration 224059ms).
+
+## Note on compilables
+While it is our desire to deliver compilables for users to try BloodConnect, we cannot release the compiled application packages (i.e. APKs for
+Android and IPAs for iOS). This is due to the fact that we used many APIs, many of which are free with limits, or borrowed API keys. We cannot risk
+API overuse on our end, so, if you would like to try BloodConnect, we kindly invite you to self-build it by following the instructions 
+[here](https://github.com/bloodwork-nus/bloodconnect#building-and-developing).
+
+## Motivation
+For a country of approximately 5.7 million people, the 75,655 donors in 2019&mdash;approx. 1.33%&mdash;was particularly
+low.[^1] In fact, in 2019, the Singapore Red Cross and Health Sciences Authority appealed for blood donors as stocks
+in blood banks reached low levels.[^2] Approximately 3,000 donors of any types were needed to restore the stocks to a 
+healthy level. This shortage was grave as the blood group with the greatest extent of shortage was O, the universal group 
+used in emergencies, particulary when the blood identity of the patient was unknown. The situation is exacerbated by
+the fact that the number of young donors is declining at a steady rate, from about 23,000 in 2008 to 18,000 in
+2019.[^1]<sup>,</sup>[^3] As the population is being increasingly dominated by senior citizens, and the current COVID-19
+pandemic progresses, blood donors are needed more than ever.
+
+When there is a lack of supply for a particular blood type in blood banks or hospital inventories, patients and families
+turn to social media to look for blood donors. While this method may reach a myriad of potential donors, it is not 
+always deterministic. There is also no guarantee that the potential donors are reachable, and this weakness in this 
+method may be crucial in times of crisis. The Singapore Red Cross and HSA have a database of blood donors which are
+contactable when blood supplies are needed. However, this system limits the coverage to only the regular registered
+donors. Hence, we propose the development of a platform, **BloodConnect**, to connect blood donors and donees whenever,
+wherever. BloodConnect allows users to create blood requests, which are viewable by other users as potential donors.
+Nearby users will also be notified. If a user decides to donate to a request, they will be connected to the requester
+and arrange a meeting at the hospital of request. Through this platform, we aim to bridge the gap between donors and 
+donees and decrease the waiting time to find blood, particularly in emergencies.
+
+[^1]: https://www.hsa.gov.sg/blood-donation/blood-facts-and-figures
+[^2]: https://www.straitstimes.com/singapore/3000-blood-donors-needed-as-stocks-run-low
+[^3]: https://www.tnp.sg/news/singapore/singapore-red-cross-concerned-over-lack-young-blood-donors
+
+## Aim of project
+To ensure consistent healthy supply of blood at bloodbanks and bridge the gap between blood donors and blood seekers, we
+aim to develop a platform to provide information on blood requests and notify nearby potential donors to reduce the waiting
+time for blood donations in emergency situations and encourage young donors through a relevant, digital platform with
+the ease to search avenues for blood donations.
+
+## User stories
+* As a *blood donor*, I want to be able to see blood requests to which I can donate my blood.
+* As a *blood donor*, I want to be notified when blood donation is required near my location.
+* As a *blood seeker*, I want to be able to create a blood request with my contact details and connect with an eligible donor fast.
+* As a *blood bank administrator*, I want to be able to create a blood request when the blood stocks are running low.
+* As a *hospital or health institution staff*, I want to be able to create a blood request when blood stocks are running 
+low or my patients requires direct blood transfusion.
+* As a *research institution staff*, I want to be able to create a blood request when I need donors for research
+purposes (e.g. recovered COVID-19 donors for vaccine research, etc).
+* As an *blood donation event organiser*, I want to be able to create a blood request inform of my event and increase
+participation.
+
+## Scope of project
+The platform utilises mobile (for Android and iOS) and web applications as the **front-end** interfaces for blood donors
+to view and respond to blood requests and blood seekers to create blood requests. The 
+[mobile app](http://github.com/bloodwork-nus/bloodconnect) is being developed with [React Native](http://reactnative.dev)
+and the web app will be developed with [React](http://reactjs.org).
+
+A set of **back-end** APIs will be developed for authentication, database, push notifications, and pairing algorithms. 
+This will be developed with [Node.js](http://nodejs.org) and [Firebase](http://firebase.google.com) cloud functions.
+
+These are the several features to be completed by **mid July**.
+
+### Mobile application
+This app is the main BloodConnect app which enables users to create, view, and respond to blood requests. Registered
+users will be able to view their donations/requests history and be notified of nearby blood donations. Users can also
+share blood requests to their friends.
+
+### Smart search
+The search function in BloodConnect will be developed to allow searches based on blood type, types of venues, emergency,
+time, descriptions, and venue names. In addition, voice search will also be implemented.
+
+### OTP verification
+OTP verification for users' mobile phone or email verifications.
+
+### Custom protocol handler
+Since users can share blood requests, we plan to share the blood requests in a form of a link which will be able to 
+redirect users to the web or mobile app. To redirect to the latter, a custom protocol handler is needed.
+
+### Expression of gratitude
+After a successful blood donation, an animation will be displayed to thank donors for their heroic and selfless 
+contribution.
+
+## Other platforms
+We did a literature review and there have been similar platforms developed,
+such as [Simply Blood](http://simplyblood.com), [Donor2Donor](http://donor2donor.com/), [Blood4Life.ID](http://blood4life.id/), and [Red Cross Connection](https://www.techinasia.com/singapore-red-cross-gamifies-blood-donations-app).
+
+* [Simply Blood](http://simplyblood.com), developed in 2017  
+Simply Blood is an Android and web app developed as a platform to connect blood donors
+with blood seekers to alleviate blood shortage, wastage, and transfusion waiting time. After inspecting the app,
+we saw that it requires *all* users (donors and seekers) to create
+an account with their mobile phone number, which is verified by an SMS OTP. The app also requires blood requesters
+to provide their full name, which may be considered a privacy concern, as some users may not want to disclose the 
+fact that they have medical conditions which require blood transfusion. **With BloodConnect**, we will design a more intuitive UI which not only looks modern and recent, but also easy to use. BloodConnect will only require *blood seekers*
+to register and verify their email address to prevent illegal activities, but allow *blood donors* to use the app
+without registration. However, blood donors can create an account to view their donation history, save their
+fitness survey for a set period of time (TBC), and be notified of any nearby blood requests. BloodConnect **will not** require users' full name for privacy reasons.
+
+* [Donor2Donor](http://donor2donor.com/), developed in 2016  
+This app takes a different approach towards finding blood donations. First of all, this app also allows for organ
+donations, not only blood donations. Secondly, this app allows blood seekers to find available blood donors with
+maximum radius of 50 km. This approach is different from BloodConnect's, as donors will have to publish their 
+availability in the platform and blood seekers will choose from a list of available donors. Donor2Donor, despite having
+their website written in English, seems to focus on the Indian community, as their ads are mainly in Hindi. We aim
+to enable connections in any parts of the world.
+
+* [Blood4Life.ID](http://blood4life.id/), developed in 2009  
+In 2009, Blood4Life.ID used mailing lists, and shifted to Twitter and Facebook in 2010. In 2019, they developed the
+[web application](http://blood4life.id) as a more systematic platform. It appears that Blood4Life.ID takes a more
+social approach, as their web app contains a lot of posts, events, news, community collaterals, and blood requests
+map in between. Also, this platform is only available for the Indonesian community. Its blood donation search
+function only "posts" request and donors will have to search and contact the requester directly. **With BloodConnect**,
+it will notify nearby users and there is a call-to-action for donors to connect with the requester.
+
+* [Red Cross Connection](https://www.techinasia.com/singapore-red-cross-gamifies-blood-donations-app), developed in 2014  
+This platform was developed by the Singapore Red Cross as a campaign, and was officially announced in January 2014.[^4] 
+It shared similarities with BloodConnect, however, it is no longer operational. The app allows users to post the 
+"number of lives they have saved" and view the "number of blood donations made by their peers".[^5] We believe that 
+this feature does not value-add into the problem that the platform was aiming to tackle: 
+*amplifying the search for donors*.[^4] Instead, this feature may make blood donation seemed competitive and users can 
+showcase the "*number of lives they have saved*". As a reward, blood donors may scan a QR code at donation sites to view an
+AR animation an an appreciation for their "selfless and heroic acts".[^6] While we agree with the campaign's message that 
+donating blood is a heroic act, the aim of BloodConnect's development is not as a campaign, but as a tool to solve the 
+problem with finding blood. That being said, as of now, we do not plan to take a gamified approach towards blood donation.
+
+[^4]: https://www.campaignasia.com/agencyportfolio/casestudy/200,red-cross-connection.aspx#.XtIaHjoza00
+[^5]: https://www.todayonline.com/singapore/singapore-red-cross-launches-mobile-app-blood-donation
+[^6]: https://www.techinasia.com/singapore-red-cross-gamifies-blood-donations-app
+
+## Program flow
+![Program and user flow diagram](https://github.com/bloodwork-nus/bloodconnect-docs/raw/master/static/img/program-flow.svg)
+
+## Progress video
+If you cannot view the video in the frame below, click [here](https://youtu.be/jnywpl0A-LQ) to watch it on YouTube.
+<iframe width="560" height="315" src="https://www.youtube.com/embed/jnywpl0A-LQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## Project poster
+[Click here to view the poster.](https://github.com/bloodwork-nus/bloodconnect-docs/raw/master/static/misc/bloodconnect-poster-20200601.pdf)
+
+## Project log
+| No | Task | Date | Phillmont (hours) | Ivan (hours) | Remarks |
+| -- | ---- | ---- | ----------------- | ------------ | ------- |
+| 1 | Milestone 1 peer review | Jun 8 | | 8 | |
+| 2 | Meetings with Gerald and Leslie on Milestone 1 | Jun 5, 10 | 2 | 2 | Discussed about what to expect for Milestone 2, how to design better forms, and some UI improvements suggestions. |
+| 3 | Mastering Redux and state management | Jun 11-12 | 20 | | Redux will be used in BloodConnect to manage states and store user preferences globally. |
+| 4 | Wireframing | Jun 13-14 | 20 | | Designed additional 7 screens |
+| 5 | Developing New Request Screen | Jun 15 | 10 | | Three steps, including the fields, select location, and review screens. |
+| 6 | Developing Maps markers and `LocationCard` | Jun 16 | 10 | | Placing markers, designing callouts, and various tap handlers to interact with the bottom sheet. |
+| 7 | Developing DonateScreen | Jun 17 | 10 | | |
+| 8 | Developing UserProfileScreen | Jun 18 | 10 | | | 
+| 9 | Developing Manage requests screen | Jun 19 | 10 | | Including the view donors screen. |
+| 10 | Integrating Firebase Realtime Database and Authentication | Jun 20-22 | 30 | | Fetching user details, realtime requests and donations refresh, database queries, etc. |
+| 11 | Enabling Manage requests features in Database | Jun 23-24 | 20 | | Requests can have different statuses, and different statuses have different behaviours in the Manage requests screen. This task includes the testing of Manage requests screen. |
+| 12 | Bugfixing and UI components refactorings | Misc | 15 | | As listed in the Testing section above. |
+| | **Total hours** | | 157 | 10 | |
+
+Total hours spent by both Orbitees: 157 + 10 = **167 hours**.
+
+See you in Milestone 3 👋!

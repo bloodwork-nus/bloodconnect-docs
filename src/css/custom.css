@@ -28,6 +28,13 @@
   padding: 0 var(--ifm-pre-padding);
 }
 
+.screenshot {
+  margin-left: auto;
+  margin-right: auto;
+  width: 20rem;
+  display: block;
+}
+
 /*
 @font-face {
   font-family: "Inter";
